@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Form Validation</title>
+</head>
+
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Register</h1>
+        </div>
+        <form action="" class="form">
+            <input type="email" class="input-field" id="email" placeholder="Email" required>
+            <div class="countries">
+                <select id="country" required>
+                    <option value="en">United states</option>
+                    <option value="uk">Ukraine</option>
+                    <option value="ch">Switzerland</option>
+                    <option value="fr">France</option>
+                    <option value="de">Germany</option>
+                </select>
+                <input type="text" id="zip" placeholder="Zip" required>
+            </div>
+            <input type="password" class="input-field" placeholder="Password" required>
+            <input type="password" class="input-field" placeholder="Re-enter password" required>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+
+</html>
