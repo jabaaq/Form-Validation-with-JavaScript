@@ -14,7 +14,7 @@
             <h1>Register</h1>
         </div>
         <form action="" class="form">
-            <input type="email" class="input-field" id="email" placeholder="Email" required>
+            <input type="email" class="input-field" id="email" placeholder="Email">
             <div class="countries">
                 <select id="country" required>
                     <option value="en">United states</option>
@@ -23,11 +23,14 @@
                     <option value="fr">France</option>
                     <option value="de">Germany</option>
                 </select>
-                <input type="text" id="zip" placeholder="Zip" required>
+                <input type="text" id="zip" class="input-field" placeholder="Zip">
             </div>
-            <input type="password" class="input-field" placeholder="Password" required>
-            <input type="password" class="input-field" placeholder="Re-enter password" required>
-
+            <input type="password" class="input-field" placeholder="Password">
+            <input type="password" class="input-field" placeholder="Re-enter password">
+            <div class="privacy-checkbox">
+                <input type="checkbox" id="input-checkbox">
+                <label for="input-checkbox" class="checkbox-label">Accept privacy policy</label>
+            </div>
             <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>

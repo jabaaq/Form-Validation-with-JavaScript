@@ -14,7 +14,7 @@ body {
 
 .form-container {
     width: 400px;
-    height: 400px;
+    height: 450px;
     background-color: white;
     border-radius: 4%;
     display: flex;
@@ -34,6 +34,10 @@ body {
 .input-field {
     width: 300px;
     height: 40px;
+}
+
+#zip {
+    width: 165px;
 }
 
 #country {
@@ -98,4 +102,21 @@ body {
 .submit-btn:active {
     box-shadow: #D6D6E7 0 3px 7px inset;
     transform: translateY(2px);
+}
+
+.input-field.error {
+    border-color: rgb(165, 23, 23);
+}
+
+.error-text {
+    font-size: 13px;
+    color: rgb(176, 24, 24);
+}
+
+.privacy-checkbox {
+    width: 100%;
+}
+
+#input-checkbox.error+.checkbox-label {
+    color: rgb(165, 23, 23);
 }
