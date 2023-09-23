@@ -26,24 +26,6 @@ function validateZip() {
     } else {
         inputZip.setCustomValidity(countryZip[country.value][1])
     }
-
-
-
-    // function validateUSPostalCode(postalCode) {
-    //     // Regular expression for US ZIP codes (5 digits)
-    //     var usZipCodePattern = /^\d{5}$/;
-
-    //     return usZipCodePattern.test(postalCode);
-    // }
-
-    // // Example usage:
-    // var postalCode = "90210";
-    // if (validateUSPostalCode(postalCode)) {
-    //     console.log(postalCode + " is a valid US ZIP code.");
-    // } else {
-    //     console.log(postalCode + " is not a valid US ZIP code.");
-    // }
-
 }
 
 country.addEventListener('change', () => {
@@ -53,6 +35,35 @@ country.addEventListener('change', () => {
 inputZip.addEventListener('input', () => {
     validateZip()
 })
+
+
+function validatePassword() {
+    let passwords = document.querySelectorAll('.password')
+    let newPassword = document.querySelector('#new-password').value
+    let repeatPassword = document.querySelector('#repeat-password').value
+    let minNumOfChars = 6;
+    let maxNumOfChars = 16
+    let regularExpression = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})")
+    let errorMessage = document.querySelector('.error')
+    let alertDisplayed = false
+
+    passwords.forEach(password => {
+        if (!regularExpression.test(password.value) && !alertDisplayed) {
+            alert("Password should contain at least one number and one special character");
+            alertDisplayed = true
+        }
+
+    })
+
+    if (newPassword.length < minNumOfChars || newPassword.length > maxNumOfChars || newPassword !== repeatPassword) {
+        errorMessage.textContent = 'Passwords do not match.'
+        return false
+    } else {
+        errorMessage.textContent = ''
+    }
+
+
+}
 
 
 function validateEmail(email) {
@@ -66,7 +77,6 @@ form.addEventListener('submit', (e) => {
     e.preventDefault()
 
     let emailVal = inputEmail.value,
-        zipVal = inputZip.value,
         emptyInputs = Array.from(inputFields).filter(input => input.value === '')
 
     inputFields.forEach(input => {
@@ -99,13 +109,5 @@ form.addEventListener('submit', (e) => {
         inputCheckbox.classList.remove('error')
     }
 
+    validatePassword()
 })
-
-
-
-
-
-// window.onload = function () {
-//     document.getElementById("country").onchange = validateZip;
-//     document.getElementById("zip").oninput = validateZip;
-// };

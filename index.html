@@ -28,8 +28,12 @@
                     <p class="validationMessage"></p>
                 </div>
             </div>
-            <input type="password" class="input-field" placeholder="Password">
-            <input type="password" class="input-field" placeholder="Re-enter password">
+            <input type="password" class="input-field password" id="new-password" placeholder="Password">
+            <div class="error-message">
+                <input type="password" class="input-field password" id="repeat-password"
+                    placeholder="Re-enter password">
+                <p class="error"></p>
+            </div>
             <div class="privacy-checkbox">
                 <input type="checkbox" id="input-checkbox">
                 <label for="input-checkbox" class="checkbox-label">Accept privacy policy</label>
