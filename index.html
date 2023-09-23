@@ -17,13 +17,16 @@
             <input type="email" class="input-field" id="email" placeholder="Email">
             <div class="countries">
                 <select id="country" required>
-                    <option value="en">United states</option>
-                    <option value="uk">Ukraine</option>
+                    <option value="us">United States</option>
+                    <option value="ua">Ukraine</option>
                     <option value="ch">Switzerland</option>
                     <option value="fr">France</option>
                     <option value="de">Germany</option>
                 </select>
-                <input type="text" id="zip" class="input-field" placeholder="Zip">
+                <div class="zip">
+                    <input type="text" id="zip" class="input-field" placeholder="Zip">
+                    <p class="validationMessage"></p>
+                </div>
             </div>
             <input type="password" class="input-field" placeholder="Password">
             <input type="password" class="input-field" placeholder="Re-enter password">

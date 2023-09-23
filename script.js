@@ -1,54 +1,59 @@
 'use strict';
-// function validation(form) {
-
-//     function removeError(input) {
-//         const parent = input.parentNode
-
-//         if (parent.classList.contains('error')) {
-//             parent.querySelector('.error-text').remove()
-//             parent.classList.remove('error')
-//         }
-//     }
-
-//     function createError(input, text) {
-//         const parent = input.parentNode
-
-//         const errorLabel = document.createElement('p')
-//         errorLabel.classList.add('error-text')
-//         errorLabel.textContent = text
-
-//         parent.classList.add('error')
-//         parent.appendChild(errorLabel)
-//     }
-
-//     let result = true
-
-//     const allInputs = form.querySelectorAll('input')
-//     for (let input of allInputs) {
-//         removeError(input)
-//         if (input.value == '') {
-//             console.log(); ('Please fill all the inputs!')
-//             createError(input, 'Please fill the required fields!')
-//             result = false
-//         }
-//     }
-
-//     return result
-// }
-
-
-// document.querySelector('.form').addEventListener('submit', function (e) {
-//     e.preventDefault()
-//     if (validation(this)) {
-//         alert('Submitted!')
-//     }
-// })
-
 let form = document.querySelector('.form'),
     inputFields = document.querySelectorAll('.input-field'),
     inputEmail = document.querySelector('#email'),
     inputZip = document.querySelector('#zip'),
-    inputCheckbox = document.querySelector('#input-checkbox')
+    inputCheckbox = document.querySelector('#input-checkbox'),
+    country = document.querySelector('#country')
+
+function validateZip() {
+    let countryZip = {
+        us: ["\\d{5}([ \\-]\\d{4})?", "U.S. ZIP codes should be in the format 12345 or 12345-6789"],
+        ua: ["\\d{5}", "Ukraine ZIP codes should consist of 5 digits"],
+        ch: ["\\d{4}", "Switzerland ZIP codes should consist of 4 digits"],
+        fr: ["\\d{2}[ ]?\\d{3}", "French postal codes should be in the format 12345 or 123 456"],
+        de: ["\\d{5}", "German postal codes should be in the format 12345"]
+    }
+    console.log(country[0].value);
+
+    let checkZip = new RegExp(countryZip[country.value][0], '')
+
+    console.log(checkZip);
+    console.log(checkZip.test(inputZip.value));
+
+    if (checkZip.test(inputZip.value)) {
+        inputZip.setCustomValidity('')
+    } else {
+        inputZip.setCustomValidity(countryZip[country.value][1])
+    }
+
+
+
+    // function validateUSPostalCode(postalCode) {
+    //     // Regular expression for US ZIP codes (5 digits)
+    //     var usZipCodePattern = /^\d{5}$/;
+
+    //     return usZipCodePattern.test(postalCode);
+    // }
+
+    // // Example usage:
+    // var postalCode = "90210";
+    // if (validateUSPostalCode(postalCode)) {
+    //     console.log(postalCode + " is a valid US ZIP code.");
+    // } else {
+    //     console.log(postalCode + " is not a valid US ZIP code.");
+    // }
+
+}
+
+country.addEventListener('change', () => {
+    validateZip()
+})
+
+inputZip.addEventListener('input', () => {
+    validateZip()
+})
+
 
 function validateEmail(email) {
     let reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;    //Regular expressions
@@ -67,6 +72,7 @@ form.addEventListener('submit', (e) => {
     inputFields.forEach(input => {
         if (input.value === '') {
             input.classList.add('error')
+            de: "\d{5}"
         } else {
             input.classList.remove('error')
         }
@@ -94,3 +100,12 @@ form.addEventListener('submit', (e) => {
     }
 
 })
+
+
+
+
+
+// window.onload = function () {
+//     document.getElementById("country").onchange = validateZip;
+//     document.getElementById("zip").oninput = validateZip;
+// };
