@@ -4,7 +4,11 @@ let form = document.querySelector('.form'),
     inputEmail = document.querySelector('#email'),
     inputZip = document.querySelector('#zip'),
     inputCheckbox = document.querySelector('#input-checkbox'),
-    country = document.querySelector('#country')
+    country = document.querySelector('#country'),
+    modal = document.querySelector('.modal'),
+    modalBox = document.querySelector('.modal-box'),
+    modalCloseBtn = document.querySelector('.accept-btn'),
+    modalError = document.querySelector('.error-modal')
 
 function validateZip() {
     let countryZip = {
@@ -18,8 +22,6 @@ function validateZip() {
 
     let checkZip = new RegExp(countryZip[country.value][0], '')
 
-    console.log(checkZip);
-    console.log(checkZip.test(inputZip.value));
 
     if (checkZip.test(inputZip.value)) {
         inputZip.setCustomValidity('')
@@ -49,7 +51,8 @@ function validatePassword() {
 
     passwords.forEach(password => {
         if (!regularExpression.test(password.value) && !alertDisplayed) {
-            alert("Password should contain at least one number and one special character");
+            // alert("Password should contain at least one number and one special character");
+            openModal(modalError, "Password should contain at least one number and one special character")
             alertDisplayed = true
         }
 
@@ -89,7 +92,7 @@ form.addEventListener('submit', (e) => {
     })
 
     if (emptyInputs.length !== 0) {
-        console.log('inputs note filled');
+        openModal(modalError, 'Please fill out all required fields')
         return false
     }
 
@@ -110,4 +113,37 @@ form.addEventListener('submit', (e) => {
     }
 
     validatePassword()
+})
+
+
+function openModal(textBox, text) {
+    const modal = document.querySelector('.modal');
+    textBox.innerHTML = ''
+    textBox.innerHTML = text
+    modal.classList.add('show')
+    modal.classList.remove('hide')
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    const modal = document.querySelector('.modal');
+    modal.classList.add('hide');
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+})
+
+window.addEventListener('click', (event) => {
+    if (event.target == modal) {
+        closeModal();
+    }
+})
+
+modalCloseBtn.addEventListener('click', () => {
+    closeModal();
 })
